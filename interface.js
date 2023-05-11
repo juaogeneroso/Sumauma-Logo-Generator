@@ -1,34 +1,45 @@
 function createInterface() {
+  // DEFINIR POSIÇÃO DA INTERFACE
   let uiWidth = 300;
-  let uiHeight = height + 5;
-  
+  let uiPosition = createVector(-uiWidth / 2, height + 5);
+  if (windowWidth - width > 320) {
+    uiPosition.set(width / 2 + 25, 8);
+    let uiBox = createDiv();
+    uiBox.addClass("box");
+    uiBox.position(width / 2 + uiPosition.x - 10, uiPosition.y);
+    uiBox.style("height", `${height}px`);
+  }
+
   // CRIAR CAIXA DE TEXTO - SLIDER
   let titleSlider = createDiv("Expandir Letras");
   titleSlider.addClass("sectionTitle");
-  titleSlider.position((width - uiWidth) / 2, uiHeight + 10);
+  titleSlider.position(width / 2 + uiPosition.x, uiPosition.y + 10);
 
   // CRIAR SLIDER
   sliderWidth = createSlider(0, 16, 0, int(1));
-  sliderWidth.position((width - uiWidth) / 2 - 2, uiHeight + 40);
+  sliderWidth.position(width / 2 + uiPosition.x - 2, uiPosition.y + 40);
   sliderWidth.addClass("letterSlider");
   sliderWidth.style("width", `${uiWidth}px`);
 
   // CRIAR CAIXA DE TEXTO - COR DO FUNDO
   let titleBgColor = createDiv("Logo");
   titleBgColor.addClass("sectionTitle");
-  titleBgColor.position((width - uiWidth) / 2, uiHeight + 65);
+  titleBgColor.position(width / 2 + uiPosition.x, uiPosition.y + 65);
 
   // CRIAR CAIXA DE TEXTO - COR DO LOGO
   let titleLogoColor = createDiv("Fundo");
   titleLogoColor.addClass("sectionTitle");
-  titleLogoColor.position((width - uiWidth) / 2, uiHeight + 120);
+  titleLogoColor.position(width / 2 + uiPosition.x, uiPosition.y + 120);
 
   // CRIAR BOTÕES DE CORES
   let dotColor = [];
   for (let i = 0; i < 30; i++) {
     dotColor[i] = createDiv("");
     dotColor[i].addClass("dotColor");
-    dotColor[i].position((width - uiWidth) / 2 + (i % 15) * 20, uiHeight + 87.5 + floor(i / 15) * 55);
+    dotColor[i].position(
+      width / 2 + uiPosition.x + (i % 15) * 20,
+      uiPosition.y + 87.5 + floor(i / 15) * 55
+    );
     dotColor[i].mousePressed(function () {
       if (i < 15) {
         setLogoColor(i);
@@ -86,24 +97,23 @@ function createInterface() {
     }
   }
 
-  
   // CRIAR CAIXA DE TEXTO
-  textInput = createInput('Adicionar chamada');
-  textInput.position((width - uiWidth) / 2, uiHeight + 175);
+  textInput = createInput("Adicionar chamada");
+  textInput.position(width / 2 + uiPosition.x, uiPosition.y + 175);
   textInput.addClass("input");
   textInput.style("width", `${uiWidth - 8}px`);
-  
+
   // BAIXAR PNG - BOTÃO
   let buttonPng = createDiv("Baixar PNG");
   buttonPng.addClass("sectionTitle");
   buttonPng.addClass("button");
-  buttonPng.position((width - uiWidth) / 2, uiHeight + 215);
+  buttonPng.position(width / 2 + uiPosition.x, uiPosition.y + 215);
   buttonPng.mousePressed(downloadPNG);
-  
+
   // BAIXAR SVG - BOTÃO
   let buttonSvg = createDiv("Baixar SVG");
   buttonSvg.addClass("sectionTitle");
   buttonSvg.addClass("button");
-  buttonSvg.position((width - uiWidth) / 2, uiHeight + 240);
+  buttonSvg.position(width / 2 + uiPosition.x, uiPosition.y + 240);
   buttonSvg.mousePressed(downloadSVG);
 }

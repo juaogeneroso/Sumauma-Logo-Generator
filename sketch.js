@@ -6,17 +6,25 @@ let mainCanvas;
 let saveCanvas;
 
 function preload() {
-  fontRegular = loadFont('SpaceGrotesk-Regular.ttf');
+  fontRegular = loadFont("SpaceGrotesk-Regular.ttf");
 }
 
 function setup() {
   frameRate(30);
-  
-  mainCanvas = createCanvas(
-    min(max(windowWidth - 16, 300), 1080),
-    min((windowWidth - 16) / 2, 540),
-    SVG
-  );
+
+  // DECIDIR TAMANHO DO CANVAS
+  let canvasSize = createVector(0, 0);
+  if (windowWidth > 1400) {
+    canvasSize.set(windowWidth - 340, (windowWidth - 340) / 2);
+  } else {
+    canvasSize.set(
+      max(windowWidth - 16, 300),
+      max((windowWidth - 16) / 2, 150)
+    );
+  }
+
+  // CRIAR CANVAS
+  mainCanvas = createCanvas(canvasSize.x, canvasSize.y, SVG);
 
   saveCanvas = createGraphics(width, height);
 
@@ -185,7 +193,7 @@ function downloadPNG() {
   pCanvasSize = createVector(width, height);
   resizeCanvas(1920, 1080);
   pScalling = scalling;
-  scalling = 4;
+  scalling = 2;
   drawLogo();
   save(saveCanvas, "Sumauma.png");
   scalling = pScalling;
