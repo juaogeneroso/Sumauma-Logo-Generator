@@ -1,33 +1,34 @@
 function createInterface() {
   let uiWidth = 300;
+  let uiHeight = height + 5;
   
   // CRIAR CAIXA DE TEXTO - SLIDER
   let titleSlider = createDiv("Expandir Letras");
   titleSlider.addClass("sectionTitle");
-  titleSlider.position((width - uiWidth) / 2, height + 10);
+  titleSlider.position((width - uiWidth) / 2, uiHeight + 10);
 
   // CRIAR SLIDER
   sliderWidth = createSlider(0, 16, 0, int(1));
-  sliderWidth.position((width - uiWidth) / 2 - 2, height + 40);
+  sliderWidth.position((width - uiWidth) / 2 - 2, uiHeight + 40);
   sliderWidth.addClass("letterSlider");
   sliderWidth.style("width", `${uiWidth}px`);
 
   // CRIAR CAIXA DE TEXTO - COR DO FUNDO
   let titleBgColor = createDiv("Logo");
   titleBgColor.addClass("sectionTitle");
-  titleBgColor.position((width - uiWidth) / 2, height + 65);
+  titleBgColor.position((width - uiWidth) / 2, uiHeight + 65);
 
   // CRIAR CAIXA DE TEXTO - COR DO LOGO
   let titleLogoColor = createDiv("Fundo");
   titleLogoColor.addClass("sectionTitle");
-  titleLogoColor.position((width - uiWidth) / 2, height + 120);
+  titleLogoColor.position((width - uiWidth) / 2, uiHeight + 120);
 
   // CRIAR BOTÕES DE CORES
   let dotColor = [];
   for (let i = 0; i < 30; i++) {
     dotColor[i] = createDiv("");
     dotColor[i].addClass("dotColor");
-    dotColor[i].position((width - uiWidth) / 2 + (i % 15) * 20, height + 87.5 + floor(i / 15) * 55);
+    dotColor[i].position((width - uiWidth) / 2 + (i % 15) * 20, uiHeight + 87.5 + floor(i / 15) * 55);
     dotColor[i].mousePressed(function () {
       if (i < 15) {
         setLogoColor(i);
@@ -85,10 +86,24 @@ function createInterface() {
     }
   }
 
-  // CRIAR CAIXA DE TEXTO - BOTÃO
+  
+  // CRIAR CAIXA DE TEXTO
+  textInput = createInput('Adicionar chamada');
+  textInput.position((width - uiWidth) / 2, uiHeight + 175);
+  textInput.addClass("input");
+  textInput.style("width", `${uiWidth - 8}px`);
+  
+  // BAIXAR PNG - BOTÃO
+  let buttonPng = createDiv("Baixar PNG");
+  buttonPng.addClass("sectionTitle");
+  buttonPng.addClass("button");
+  buttonPng.position((width - uiWidth) / 2, uiHeight + 215);
+  buttonPng.mousePressed(downloadPNG);
+  
+  // BAIXAR SVG - BOTÃO
   let buttonSvg = createDiv("Baixar SVG");
-  buttonSvg.addClass("svgButton");
   buttonSvg.addClass("sectionTitle");
-  buttonSvg.position((width - uiWidth) / 2, height + 180);
+  buttonSvg.addClass("button");
+  buttonSvg.position((width - uiWidth) / 2, uiHeight + 240);
   buttonSvg.mousePressed(downloadSVG);
 }

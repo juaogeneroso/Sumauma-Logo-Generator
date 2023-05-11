@@ -1,13 +1,28 @@
 let scalling;
 let bgColor;
 let logoColor;
+let textInput;
+let mainCanvas;
+let saveCanvas;
+
+function preload() {
+  fontRegular = loadFont('SpaceGrotesk-Regular.ttf');
+}
 
 function setup() {
-  createCanvas(min((max(windowWidth, 300)), 1080), min(windowWidth / 2, 540), SVG);
+  frameRate(30);
+  
+  mainCanvas = createCanvas(
+    min(max(windowWidth - 16, 300), 1080),
+    min((windowWidth - 16) / 2, 540),
+    SVG
+  );
+
+  saveCanvas = createGraphics(width, height);
 
   // ENCAIXAR DESENHO NO TAMANHO DO CANVAS
   scalling = map(width, 0, 1080, 0, 1);
-  
+
   // CRIAR INTERFACE
   createInterface();
 
@@ -27,6 +42,10 @@ function setup() {
 }
 
 function draw() {
+  drawLogo();
+}
+
+function drawLogo() {
   // DESENHAR FUNDO
   background(bgColor.x, bgColor.y, bgColor.z);
 
@@ -42,7 +61,22 @@ function draw() {
   let handle = bevel * ((4 / 3) * tan(PI / 8)); // Fórmula para um quarto de círculo
   let distance = 25 * scalling;
 
-  // CENTRALIZAR
+  if (textInput.value() != "Adicionar chamada") {
+    fill(logoColor.x, logoColor.y, logoColor.z);
+    textSize(24 * scalling);
+    textFont(fontRegular);
+    textAlign(CENTER);
+    let subHeader = textInput.value();
+    text(
+      subHeader.toLowerCase(),
+      width / 2,
+      (height + letterHeight) / 2 + 40 * scalling
+    );
+  }
+
+  // CENTRALIZAR LOGO
+  push(); // GUARDAR POSIÇÃO INICIAL
+
   if (letterExpand == 0) {
     translate(
       (width - letterWidth * 8 - thickness * 6) / 2,
@@ -143,6 +177,19 @@ function draw() {
     thickness,
     distance
   );
+
+  pop(); // RESETAR TRANSLAÇÃO
+}
+
+function downloadPNG() {
+  pCanvasSize = createVector(width, height);
+  resizeCanvas(1920, 1080);
+  pScalling = scalling;
+  scalling = 4;
+  drawLogo();
+  save(saveCanvas, "Sumauma.png");
+  scalling = pScalling;
+  resizeCanvas(pCanvasSize.x, pCanvasSize.y);
 }
 
 function downloadSVG() {

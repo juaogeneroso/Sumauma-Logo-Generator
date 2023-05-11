@@ -1,6 +1,6 @@
 html,
 body {
-  margin: 0;
+  margin: 5;
   padding: 0;
 }
 canvas {
@@ -57,7 +57,7 @@ canvas {
 }
 
 /* BOTÃO - BAIXAR SVG */
-.svgButton {
+.button {
   color: #DFDDC6;
   border-radius: 3px;
   background-color: #2B2C2C;
@@ -65,8 +65,13 @@ canvas {
 }
 
 /* BOTÃO - HOVER */
-.myButton:hover {
+.button:hover {
   background-color: #38322C;
 }
 
-
+/* CAIXA DE TEXTO */
+.input {
+  font-family: 'Space Grotesk';
+  color: #2B2C2C;
+  background-color: #DFDDC6;
+}
