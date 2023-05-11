@@ -1,0 +1,72 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+canvas {
+  display: block;
+}
+
+/* TÍTULO */
+.sectionTitle {
+  font-size: 12px;
+  color: #2B2C2C;
+  width: 300px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  display: flex;
+  justify-content: center;
+  border-radius: 0px;
+  background-color: #DFDDC6;
+}
+
+/* SLIDER - GERAL */
+.letterSlider {
+  -webkit-appearance: none;
+  height: 5px;
+  outline: none;
+  border-radius: 0px;
+  background: #4D4E4C;
+}
+
+/* SLIDER - LINHA */
+.letterSlider::-webkit-slider-runnable-track {
+  height: 3px;
+  -webkit-appearance: none;
+  cursor: pointer; /* Tornar cursor em uma mão */
+}
+
+/* SLIDER - THUMB */
+.letterSlider::-webkit-slider-thumb {
+  width: 7px;
+  height: 20px;
+  background: #A4322C;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -8px; /* Centralizar altura */
+}
+
+/* BOTÃO - CORES */
+.dotColor {
+  width: 19px;
+  height: 19px;
+  border-radius: 0%;
+  cursor: pointer;
+/*   display: inline-block; */
+/*   margin: 5px; */
+}
+
+/* BOTÃO - BAIXAR SVG */
+.svgButton {
+  color: #DFDDC6;
+  border-radius: 3px;
+  background-color: #2B2C2C;
+  cursor: pointer;
+}
+
+/* BOTÃO - HOVER */
+.myButton:hover {
+  background-color: #38322C;
+}
+
+
